@@ -10,7 +10,7 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = os.Args[0]
-	app.Usage = "TODO"
+	app.Usage = "Get twitter access token from command line."
 	app.Author = "pocke"
 	app.Version = "0.0.1"
 

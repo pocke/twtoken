@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/codegangsta/cli"
+	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
@@ -27,6 +28,10 @@ func main() {
 			Usage:  "Consumer secret of Twitter app",
 			EnvVar: "CONSUMER_SECRET",
 		},
+		cli.BoolTFlag{
+			Name:  "o, open",
+			Usage: "Auto open URL by web browser",
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -40,6 +45,9 @@ func main() {
 		token := NewToken(ck, cs)
 		url := token.URL()
 		fmt.Printf("Access > %s\n", url)
+		if c.Bool("o") {
+			open.Run(url)
+		}
 		fmt.Println()
 
 		aToken := token.AccessToken()
